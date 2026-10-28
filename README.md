@@ -3,7 +3,7 @@
 
 A distinctive, modern, and production-grade personal portfolio website for **Mahadeva Prasad S**, an MCA student and aspiring **Full-Stack Developer** / **Software Developer**.
 
-Designed with a deep navy and charcoal foundation, electric-blue, violet, and subtle teal accents, asymmetric editorial cards, and an honest data-driven architecture.
+Designed with a bold and modern palette: **Pure Black** (`#050505`) and **Dark Gray** (`#161616`) foundation, **Bright Orange** (`#FF4D00`) accents, crisp **White** (`#FFFFFF`) headings, and **Light Gray** (`#A0A0A0`) typography.
 
 ---
 
@@ -23,11 +23,10 @@ To maintain absolute credibility with technical recruiters and engineering manag
 
 - **Name:** Mahadeva Prasad S
 - **Education:**
-  - **Master of Computer Applications (MCA):** Mangalore Institute of Technology and Engineering (2025–2027).
-    > **Note on CGPA:** Flagged for confirmation (Resume lists 6.86; previous entry stated 7.18). Displayed neutrally pending user verification.
-  - **Bachelor of Computer Applications (BCA):** Hindustan College, Mysore (2022–2025) — 78%.
-  - **Pre-University Course (PUC):** Sree Vasavi Composite PU College, Kollegal (2020–2022) — 54%.
-  - **SSLC:** Sri Shiva Vidya Kendra (R), Kollegal (2020) — 72%.
+  - **Master of Computer Applications (MCA):** Mangalore Institute of Technology and Engineering (2025–2027) — **CGPA: 7.18**.
+  - **Bachelor of Computer Applications (BCA):** Hindustan College, Mysore (2022–2025) — **78%**.
+  - **Pre-University Course (PUC):** Sree Vasavi Composite PU College, Kollegal (2020–2022) — **54%**.
+  - **SSLC:** Sri Shiva Vidya Kendra (R), Kollegal (2020) — **72%**.
 - **Technical Skills:**
   - *Languages:* Java, Python, JavaScript
   - *Web & Full-Stack:* HTML, CSS, Full-Stack Development, REST APIs

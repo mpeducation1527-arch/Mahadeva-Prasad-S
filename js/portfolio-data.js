@@ -40,7 +40,7 @@ const PORTFOLIO_DATA = {
         id: "technology",
         pillarNumber: "PILLAR 01",
         title: "Reliable & Practical Technology",
-        accent: "blue",
+        accent: "orange",
         summary: "Develop dependable, maintainable, and accessible software applications that address real-world operational bottlenecks. Grounded in strong engineering principles, clean code, and scalable database architecture.",
         tags: ["Practical Software", "Full-Stack Development", "Accessible UX"]
       },
@@ -48,7 +48,7 @@ const PORTFOLIO_DATA = {
         id: "public-service",
         pillarNumber: "PILLAR 02",
         title: "Public Service & UPSC Dream",
-        accent: "violet",
+        accent: "orange",
         summary: "Work towards my long-term ambition of the UPSC Civil Services Examination. Aspiring to contribute directly to society through public administration, ethical governance, and policy implementation that creates opportunities for underserved communities.",
         tags: ["UPSC Civil Services", "Public Administration", "Societal Impact"]
       },
@@ -56,7 +56,7 @@ const PORTFOLIO_DATA = {
         id: "social-startup",
         pillarNumber: "PILLAR 03",
         title: "Agritech & Rural Empowerment",
-        accent: "teal",
+        accent: "orange",
         summary: "Build an impactful, affordable startup that creates useful technology for farmers, rural communities, and people with limited access to modern digital tools—such as regional decision-support platforms designed for Kannada-speaking users.",
         tags: ["Empowering Farmers", "Rural Innovation", "Digital Inclusivity"]
       }
@@ -83,7 +83,7 @@ const PORTFOLIO_DATA = {
       title: "AI-Based Smart Agriculture Decision Support System for Karnataka Farmers",
       category: "Agritech & Python Data Engine",
       badge: "Decision Support System",
-      accent: "teal",
+      accent: "orange",
       problemStatement: "Farmers and agricultural planners across Karnataka frequently lack localized, village-level visibility into soil nutrient health, water conditions, and crop-fertilizer recommendations in their native language.",
       overview: "An analytical decision support engine designed to process regional agricultural data for Karnataka farmers. The system structures district and village selection, farmer-entered soil NPK values, and water conditions to formulate practical crop and fertilizer recommendations with a focus on regional accessibility.",
       technologies: [
@@ -120,7 +120,7 @@ const PORTFOLIO_DATA = {
       title: "Boat Management System",
       category: "Full-Stack Web & Relational Database",
       badge: "Fleet Logistics & Operations",
-      accent: "blue",
+      accent: "orange",
       problemStatement: "Coastal boat operators and fleet administrators face operational complexities tracking vessel readiness, crew licensing, fuel monitoring, voyage logs, catch records, and fish sales across fragmented paperwork.",
       overview: "A comprehensive web-based vessel and operations management system designed for coastal fleet workflows. The application provides centralized monitoring of boat fleets, crew allocations, voyage records, catch logs, and maintenance schedules backed by a normalized MySQL relational database schema.",
       technologies: [
@@ -159,7 +159,7 @@ const PORTFOLIO_DATA = {
       title: "Material Detection in Recycling Facilities",
       category: "Machine Learning & Computer Vision",
       badge: "ML & Computer Vision",
-      accent: "violet",
+      accent: "orange",
       problemStatement: "Manual sorting in recycling facilities is hazardous, labor-intensive, and prone to sorting inconsistencies that lower recycling yields and hinder sustainability.",
       overview: "A machine-learning classification system designed to automate material detection and segregation in recycling facilities. The model identifies and categorizes recyclable materials using computer vision techniques to support more consistent, automated sorting pipelines.",
       technologies: [
@@ -225,16 +225,14 @@ def classify_recyclable_material(image_frame, model):
 
   /**
    * Education & Credentials
-   * Strictly matches uploaded resume.
-   * MCA CGPA is explicitly flagged for user confirmation.
+   * Strictly matches verified academic records.
    */
   education: [
     {
       degree: "Master of Computer Applications (MCA)",
       institution: "Mangalore Institute of Technology and Engineering (MITE)",
       period: "2025 – 2027",
-      cgpaNote: "CGPA: 6.86 (Resume) / 7.18 (Previous entry) — Awaiting Confirmation",
-      cgpaAwaitingConfirmation: true,
+      cgpa: "7.18",
       highlights: [
         "Postgraduate specialization in core computer applications and software engineering.",
         "Coursework in database systems, object-oriented software engineering, and web architectures."
@@ -272,14 +270,14 @@ def classify_recyclable_material(image_frame, model):
       role: "Java Full Stack Intern",
       program: "Internship Program",
       year: "2024",
-      accent: "blue",
+      accent: "orange",
       description: "Built and tested web application modules for the Secure Text Transferring in Cloud project, gaining hands-on experience with Java frameworks, REST APIs, and database integration."
     },
     {
       role: "UI/UX Development Intern",
       program: "Internship Program",
       year: "2024",
-      accent: "violet",
+      accent: "orange",
       description: "Designed and iterated on user-friendly interfaces using modern UX principles, delivering responsive wireframes and prototypes that improved overall user experience."
     }
   ],

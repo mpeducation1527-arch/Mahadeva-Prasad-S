@@ -2,7 +2,7 @@
  * ====================================================================
  * MAHADEVA PRASAD S — DATA RENDERER
  * Dynamically binds verified data to semantic DOM elements.
- * "Technology with Purpose" Architecture
+ * "Technology with Purpose" Architecture (Orange, Black, & White Theme)
  * ====================================================================
  */
 
@@ -39,7 +39,7 @@ const PortfolioRenderer = {
 
     if (resumeContainerEl && this.data.personal.resumeUrl) {
       resumeContainerEl.innerHTML = `
-        <a href="${this.data.personal.resumeUrl}" class="btn btn-outline-blue btn-sm" target="_blank" rel="noopener noreferrer" aria-label="Download or View Resume PDF">
+        <a href="${this.data.personal.resumeUrl}" class="btn btn-outline-orange btn-sm" target="_blank" rel="noopener noreferrer" aria-label="Download or View Resume PDF">
           <span>Resume</span>
           ${ICONS.download}
         </a>
@@ -62,7 +62,7 @@ const PortfolioRenderer = {
     if (roleBadgeEl) roleBadgeEl.textContent = this.data.personal.statusBadge;
     if (nameEl) nameEl.textContent = this.data.personal.name;
     if (headlineEl) {
-      headlineEl.innerHTML = `Building <span class="text-gradient-blue">Technology with Purpose.</span>`;
+      headlineEl.innerHTML = `Building <span class="text-gradient-orange">Technology with Purpose.</span>`;
     }
     if (introEl) introEl.textContent = this.data.personal.intro;
 
@@ -98,23 +98,17 @@ const PortfolioRenderer = {
 
     container.innerHTML = this.data.vision.pillars.map(pillar => {
       let iconSvg = ICONS.code;
-      let cardClass = "vision-tech";
-      let badgeClass = "badge-blue";
 
       if (pillar.id === "public-service") {
         iconSvg = ICONS.target;
-        cardClass = "vision-public-service";
-        badgeClass = "badge-violet";
       } else if (pillar.id === "social-startup") {
         iconSvg = ICONS.leaf;
-        cardClass = "vision-startup";
-        badgeClass = "badge-teal";
       }
 
       return `
-        <article class="card vision-card ${cardClass}">
+        <article class="card vision-card vision-card-orange">
           <div class="card-header-icon">
-            <div class="icon-badge icon-badge-${pillar.accent}" aria-hidden="true">
+            <div class="icon-badge icon-badge-orange" aria-hidden="true">
               ${iconSvg}
             </div>
             <div>
@@ -126,7 +120,7 @@ const PortfolioRenderer = {
           <p class="vision-body">${pillar.summary}</p>
 
           <div class="vision-tags-row">
-            ${pillar.tags.map(t => `<span class="badge ${badgeClass}">${t}</span>`).join("")}
+            ${pillar.tags.map(t => `<span class="badge badge-orange">${t}</span>`).join("")}
           </div>
         </article>
       `;
@@ -142,30 +136,24 @@ const PortfolioRenderer = {
 
     container.innerHTML = this.data.projects.map((proj, idx) => {
       let icon = ICONS.leaf;
-      let cardAccentClass = "project-card-teal";
-      let badgeClass = "badge-teal";
 
       if (proj.id === "boat-management") {
         icon = ICONS.anchor;
-        cardAccentClass = "project-card-blue";
-        badgeClass = "badge-blue";
       } else if (proj.id === "recycling-detection") {
         icon = ICONS.recycle;
-        cardAccentClass = "project-card-violet";
-        badgeClass = "badge-violet";
       }
 
       return `
-        <article class="project-card ${cardAccentClass}" data-project-id="${proj.id}">
+        <article class="project-card project-card-orange" data-project-id="${proj.id}">
           <div class="project-preview">
-            <div class="icon-badge icon-badge-${proj.accent}" style="width: 58px; height: 58px;" aria-hidden="true">
+            <div class="icon-badge icon-badge-orange" style="width: 58px; height: 58px;" aria-hidden="true">
               ${icon}
             </div>
           </div>
 
           <div class="project-card-body">
             <div class="project-top-row">
-              <span class="badge ${badgeClass}">${proj.badge}</span>
+              <span class="badge badge-orange">${proj.badge}</span>
               <span class="badge">// 0${idx + 1}</span>
             </div>
 
@@ -181,7 +169,7 @@ const PortfolioRenderer = {
                 ${ICONS.github}
                 <span>Repository</span>
               </a>
-              <button type="button" class="btn btn-outline-${proj.accent} btn-sm js-open-project-modal" data-project-id="${proj.id}" aria-label="Inspect ${proj.title} Architecture">
+              <button type="button" class="btn btn-outline-orange btn-sm js-open-project-modal" data-project-id="${proj.id}" aria-label="Inspect ${proj.title} Architecture">
                 <span>Inspect Architecture</span>
                 ${ICONS.arrowRight}
               </button>
@@ -204,7 +192,7 @@ const PortfolioRenderer = {
         ${this.data.skills.map(category => `
           <div class="skill-card">
             <div class="skill-card-header">
-              <div class="icon-badge icon-badge-blue" style="width: 38px; height: 38px;" aria-hidden="true">
+              <div class="icon-badge icon-badge-orange" style="width: 38px; height: 38px;" aria-hidden="true">
                 ${ICONS[category.icon] || ICONS.code}
               </div>
               <h3 class="skill-card-title">${category.title}</h3>
@@ -249,53 +237,44 @@ const PortfolioRenderer = {
 
     if (langsEl && this.data.languages) {
       langsEl.innerHTML = this.data.languages
-        .map(lang => `<span class="badge badge-blue">${lang}</span>`)
+        .map(lang => `<span class="badge badge-orange">${lang}</span>`)
         .join("");
     }
   },
 
   /**
    * Education & Verified Internship Timeline
+   * Cleanly displays MCA CGPA 7.18 without warning boxes or conflicting notes.
    */
   renderEducationAndExperience() {
     const eduTimelineEl = document.getElementById("education-timeline");
     const internListEl = document.getElementById("internships-container");
 
     if (eduTimelineEl && this.data.education) {
-      eduTimelineEl.innerHTML = this.data.education.map(item => {
-        const isMca = item.cgpaAwaitingConfirmation;
-        return `
-          <div class="timeline-item">
-            <div class="timeline-dot ${isMca ? "dot-violet" : ""}"></div>
-            <div class="timeline-content">
-              <div class="timeline-year">${item.period}</div>
-              <h4 class="timeline-title">${item.degree}</h4>
-              <div class="timeline-institution">${item.institution}</div>
-              ${item.percentage ? `<div class="timeline-meta">Aggregate: <strong>${item.percentage}</strong></div>` : ""}
-              ${item.highlights ? `
-                <ul style="margin-top: 8px; display: flex; flex-direction: column; gap: 4px;">
-                  ${item.highlights.map(h => `<li style="font-size: 0.8rem; color: var(--text-secondary); display: flex; gap: 6px;">• <span>${h}</span></li>`).join("")}
-                </ul>
-              ` : ""}
-              ${isMca ? `
-                <div class="cgpa-confirm-box" role="note">
-                  ${ICONS.alert}
-                  <div>
-                    <strong>Data Flag (Awaiting Confirmation):</strong> Resume lists CGPA <strong>6.86</strong>, while a prior profile entry noted <strong>7.18</strong>. Displayed neutrally pending final verification.
-                  </div>
-                </div>
-              ` : ""}
-            </div>
+      eduTimelineEl.innerHTML = this.data.education.map(item => `
+        <div class="timeline-item">
+          <div class="timeline-dot dot-orange"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">${item.period}</div>
+            <h4 class="timeline-title">${item.degree}</h4>
+            <div class="timeline-institution">${item.institution}</div>
+            ${item.cgpa ? `<div class="timeline-meta">CGPA: <strong>${item.cgpa}</strong></div>` : ""}
+            ${item.percentage ? `<div class="timeline-meta">Aggregate: <strong>${item.percentage}</strong></div>` : ""}
+            ${item.highlights ? `
+              <ul style="margin-top: 8px; display: flex; flex-direction: column; gap: 4px;">
+                ${item.highlights.map(h => `<li style="font-size: 0.8rem; color: var(--text-secondary); display: flex; gap: 6px;">• <span>${h}</span></li>`).join("")}
+              </ul>
+            ` : ""}
           </div>
-        `;
-      }).join("");
+        </div>
+      `).join("");
     }
 
     if (internListEl && this.data.internships) {
       internListEl.innerHTML = this.data.internships.map(intern => `
         <div class="card" style="padding: var(--space-5); margin-bottom: var(--space-4);">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-            <span class="badge badge-${intern.accent}">${intern.program}</span>
+            <span class="badge badge-orange">${intern.program}</span>
             <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">${intern.year}</span>
           </div>
           <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">${intern.role}</h4>
@@ -350,7 +329,7 @@ const PortfolioRenderer = {
       </div>
 
       <a href="${this.data.social.linkedin}" class="contact-method-card" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-        <div class="contact-method-icon" style="color: #60a5fa;">
+        <div class="contact-method-icon" style="color: var(--accent-orange);">
           ${ICONS.linkedin}
         </div>
         <div class="contact-method-text">
@@ -370,7 +349,7 @@ const PortfolioRenderer = {
       </a>
 
       <a href="${this.data.social.leetcode}" class="contact-method-card" target="_blank" rel="noopener noreferrer" aria-label="LeetCode Profile">
-        <div class="contact-method-icon" style="color: #f59e0b;">
+        <div class="contact-method-icon" style="color: var(--accent-orange);">
           ${ICONS.leetcode}
         </div>
         <div class="contact-method-text">

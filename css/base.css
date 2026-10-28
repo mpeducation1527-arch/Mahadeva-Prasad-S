@@ -1,7 +1,7 @@
 /**
  * ====================================================================
  * MAHADEVA PRASAD S — BASE & RESET
- * Deep Navy / Charcoal foundation with smooth typography
+ * Pure Black & Dark Gray foundation with Bright Orange (#FF4D00) Accents
  * ====================================================================
  */
 
@@ -31,7 +31,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Deep Ambient Glows & Subtle Architectural Grid */
+/* Subtle Architectural Grid on Pure Black */
 body::before {
   content: "";
   position: fixed;
@@ -42,46 +42,41 @@ body::before {
   pointer-events: none;
   z-index: 0;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
   background-size: 54px 54px;
 }
 
-/* Ambient Radial Gradients: Blue top-left, Violet mid-right, Teal bottom-left */
-.ambient-glow-blue {
+/* Ambient Radial Orange Halos */
+.ambient-glow-orange {
   position: fixed;
   top: -12vw;
   left: -8vw;
   width: 45vw;
   height: 45vw;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 68%);
+  background: radial-gradient(circle, rgba(255, 77, 0, 0.07) 0%, transparent 68%);
   pointer-events: none;
   z-index: 0;
 }
 
-.ambient-glow-violet {
+.ambient-glow-orange-subtle {
   position: fixed;
-  top: 35vh;
+  top: 40vh;
   right: -10vw;
   width: 50vw;
   height: 50vw;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.065) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 77, 0, 0.045) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
 
+/* Backwards-compatible ambient classes */
+.ambient-glow-blue,
+.ambient-glow-violet,
 .ambient-glow-teal {
-  position: fixed;
-  bottom: -15vw;
-  left: 20vw;
-  width: 45vw;
-  height: 45vw;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(20, 184, 166, 0.06) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 /* Typography Hierarchy */
@@ -122,13 +117,13 @@ p:last-child {
 }
 
 a {
-  color: var(--accent-blue-hover);
+  color: var(--accent-orange);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
 a:hover {
-  color: var(--text-primary);
+  color: var(--accent-orange-hover);
 }
 
 ul, ol {
@@ -146,13 +141,13 @@ code, pre {
 
 /* Focus Visibility for Accessibility */
 :focus-visible {
-  outline: 2px solid var(--accent-blue);
+  outline: 2px solid var(--accent-orange);
   outline-offset: 3px;
 }
 
 /* Selection Highlight */
 ::selection {
-  background-color: rgba(59, 130, 246, 0.35);
+  background-color: rgba(255, 77, 0, 0.4);
   color: var(--text-primary);
 }
 
@@ -178,8 +173,8 @@ code, pre {
   height: auto;
   padding: 0.75rem 1.25rem;
   background: var(--bg-surface-elevated);
-  color: var(--accent-blue-hover);
-  border: 1px solid var(--border-blue);
+  color: var(--accent-orange-hover);
+  border: 1px solid var(--border-orange);
   border-radius: var(--radius-md);
   clip: auto;
   clip-path: none;

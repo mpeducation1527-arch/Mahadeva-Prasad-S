@@ -1,6 +1,7 @@
 /**
  * ====================================================================
  * MAHADEVA PRASAD S — UTILITIES & ANIMATIONS
+ * Orange, Black, & White Theme
  * ====================================================================
  */
 
@@ -17,20 +18,13 @@
 .mb-6 { margin-bottom: var(--space-6); }
 
 /* Text Gradient Helpers */
-.gradient-text-blue {
-  background: linear-gradient(135deg, #60a5fa 10%, #3b82f6 90%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradient-text-violet {
-  background: linear-gradient(135deg, #a78bfa 10%, #8b5cf6 90%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
+.gradient-text-orange,
+.text-gradient-orange,
+.text-gradient-blue,
+.gradient-text-blue,
+.gradient-text-violet,
 .gradient-text-teal {
-  background: linear-gradient(135deg, #2dd4bf 10%, #14b8a6 90%);
+  background: linear-gradient(135deg, #FFFFFF 30%, #FF4D00 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
