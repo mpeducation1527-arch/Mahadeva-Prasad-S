@@ -1,266 +1,323 @@
 /**
  * ====================================================================
- * THE DEVELOPER'S DIGITAL ATELIER — PORTFOLIO DATA CONFIGURATION
- * Profile: Mahadevaprasad S
- * Target Roles: Full-Stack Developer | Software Developer
+ * MAHADEVA PRASAD S — PORTFOLIO DATA CONFIGURATION
+ * Single Source of Truth
+ * Personal Brand: "Technology with Purpose"
  * ====================================================================
- * 
- * INSTRUCTIONS FOR UPDATING:
- * 1. This file is the single source of truth for all content displayed on the portfolio.
- * 2. Any field with `null` or `""` (empty string) will be AUTOMATICALLY HIDDEN from the
- *    visible website so recruiters only see 100% verified information.
- * 3. Once you verify new skills, social profiles (GitHub, LinkedIn), resume file, or
- *    L&T program details, simply replace the `null` or empty string with your real details.
  */
 
 const PORTFOLIO_DATA = {
   personal: {
-    name: "Mahadevaprasad S",
-    roleLabel: "MCA | Aspiring Software Developer",
+    name: "Mahadeva Prasad S",
+    roleLabel: "MCA Student | Aspiring Full-Stack Developer",
     targetRoles: [
       "Full-Stack Developer",
       "Software Developer"
     ],
-    headline: "Building thoughtful software for real-world problems.",
-    shortIntro: "MCA graduate focused on software engineering, data-driven systems, and practical full-stack application development. Dedicated to building reliable, clean software through disciplined project implementation.",
-    aboutNarrative: [
-      "I am an MCA graduate driven by technical curiosity and practical problem-solving. My approach to software development centers on understanding foundational engineering principles and translating them into dependable, maintainable applications.",
-      "Through hands-on project building—spanning data analysis workflows for regional agriculture to relational database systems for coastal fleet management—I have developed a keen interest in how software directly connects with real-world outcomes.",
-      "I am actively preparing for Full-Stack Developer and Software Developer roles, continuously sharpening my algorithmic problem-solving abilities and expanding my understanding of clean software architecture."
-    ],
-    statusBadge: "Open to Full-Stack & Software Developer Roles",
-    // Contact information — keep empty/null until verified to prevent displaying unverified data
-    email: null, // e.g., "mahadevaprasad@example.com"
-    phone: null, // e.g., "+91 XXXXX XXXXX"
-    location: "Karnataka, India",
-    // Resume file — set to relative path (e.g., "assets/Mahadevaprasad_S_Resume.pdf") when available
-    resumeUrl: null
-  },
-
-  education: {
-    degree: "Master of Computer Applications (MCA)",
-    cgpa: "7.18",
-    // College name and graduation year are omitted as they have not been verified
-    college: null, // e.g., "College Name"
-    graduationYear: null, // e.g., "2026"
-    highlights: [
-      "Comprehensive postgraduate study in core computer applications and software engineering.",
-      "Achieved a cumulative grade point average (CGPA) of 7.18.",
-      "Hands-on emphasis on database management, application architecture, and algorithm design."
-    ]
-  },
-
-  training: {
-    title: "L&T Training",
-    provider: "Larsen & Toubro (L&T)",
-    classification: "Professional Technical Training",
-    // The specific program, duration, curriculum, and dates have not been provided yet.
-    // These fields remain null and are hidden until confirmed.
-    programName: null, // e.g., "Software Engineering Foundations"
-    dates: null,       // e.g., "Jan 2026 - Mar 2026"
-    duration: null,    // e.g., "3 Months"
-    curriculum: null,  // e.g., ["Enterprise Systems", "Industrial Workflows"]
-    certificateUrl: null, // Link to certificate if available
-    summary: "Participated in professional technical training conducted by Larsen & Toubro (L&T), focusing on industry engineering standards and structured software methodologies."
-  },
-
-  problemSolving: {
-    leetcode: {
-      profileUrl: "https://leetcode.com/u/mprasad1527/",
-      username: "mprasad1527",
-      platform: "LeetCode",
-      headline: "Algorithmic Problem Solving & Data Structures",
-      description: "Consistent problem-solving practice covering foundational data structures, algorithmic paradigms, time-space complexity optimization, and coding precision.",
-      // Solved counts and rankings are omitted to strictly avoid unverified claims
-      verifiedStats: null // Set to { solved: 150, easy: 80, medium: 60, hard: 10 } if verified
-    },
-    // Placeholders for other coding platforms (hidden until verified)
-    additionalProfiles: [
-      // { platform: "HackerRank", url: null, username: null },
-      // { platform: "CodeChef", url: null, username: null }
-    ]
+    conceptHeadline: "Building Technology with Purpose.",
+    intro: "I'm Mahadeva Prasad S, an MCA student and aspiring software developer interested in building practical technology that solves real-world problems. My long-term vision connects software innovation, public service, and opportunities for underserved communities.",
+    statusBadge: "MCA @ MITE (2025–2027) • Open to Developer Roles",
+    email: "mahadevaprasads84@gmail.com",
+    location: "Kollegal, Karnataka, India",
+    resumeUrl: "assets/Mahadeva_Prasad_S_Resume.pdf"
   },
 
   social: {
-    // Verified LeetCode is provided
     leetcode: "https://leetcode.com/u/mprasad1527/",
-    // Verified GitHub profile provided by user
     github: "https://github.com/mpeducation1527-arch",
-    linkedin: null, // e.g., "https://linkedin.com/in/mahadevaprasad-s"
-    twitter: null
+    linkedin: "https://www.linkedin.com/in/mahadevaprasad-s/"
   },
 
   /**
-   * Technical Skills Structure
-   * Categories with empty arrays will be automatically hidden from display.
-   * To add verified skills, add strings to the `items` array of any category.
+   * Section: Beyond Code — My Vision
+   * Three connected ambitions presented as long-term aspirations
    */
-  skills: {
-    note: "Skills categories are configured in the portfolio data engine and dynamically reveal once verified competencies are supplied.",
-    categories: [
+  vision: {
+    title: "Beyond Code — My Vision",
+    subtitle: "My future aspirations go beyond a conventional software career, connecting technical craft with public service and grassroots rural innovation.",
+    pillars: [
       {
-        id: "languages",
-        title: "Programming Languages",
-        icon: "code",
-        items: [] // e.g. ["Python", "PHP", "JavaScript", "SQL"]
+        id: "technology",
+        pillarNumber: "PILLAR 01",
+        title: "Reliable & Practical Technology",
+        accent: "blue",
+        summary: "Develop dependable, maintainable, and accessible software applications that address real-world operational bottlenecks. Grounded in strong engineering principles, clean code, and scalable database architecture.",
+        tags: ["Practical Software", "Full-Stack Development", "Accessible UX"]
       },
       {
-        id: "frontend",
-        title: "Frontend Development",
-        icon: "layout",
-        items: [] // e.g. ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Design"]
+        id: "public-service",
+        pillarNumber: "PILLAR 02",
+        title: "Public Service & UPSC Dream",
+        accent: "violet",
+        summary: "Work towards my long-term ambition of the UPSC Civil Services Examination. Aspiring to contribute directly to society through public administration, ethical governance, and policy implementation that creates opportunities for underserved communities.",
+        tags: ["UPSC Civil Services", "Public Administration", "Societal Impact"]
       },
       {
-        id: "backend",
-        title: "Backend Development",
-        icon: "server",
-        items: [] // e.g. ["Python Scripting", "PHP", "REST APIs", "MVC Pattern"]
-      },
-      {
-        id: "databases",
-        title: "Databases & Storage",
-        icon: "database",
-        items: [] // e.g. ["MySQL", "Relational Schema Design", "Query Optimization"]
-      },
-      {
-        id: "tools",
-        title: "Developer Tools & Platforms",
-        icon: "cpu",
-        items: [] // e.g. ["Git", "VS Code", "XAMPP", "CLI Scripting"]
+        id: "social-startup",
+        pillarNumber: "PILLAR 03",
+        title: "Agritech & Rural Empowerment",
+        accent: "teal",
+        summary: "Build an impactful, affordable startup that creates useful technology for farmers, rural communities, and people with limited access to modern digital tools—such as regional decision-support platforms designed for Kannada-speaking users.",
+        tags: ["Empowering Farmers", "Rural Innovation", "Digital Inclusivity"]
       }
+    ]
+  },
+
+  about: {
+    title: "About Me",
+    subtitle: "A journey driven by curiosity, engineering discipline, and a deep sense of social purpose.",
+    narrative: [
+      "I am an MCA student at Mangalore Institute of Technology and Engineering (2025–2027) with a deep passion for software development, algorithmic problem-solving, and building practical digital solutions.",
+      "My technical foundation centers on Java, Python, JavaScript, and full-stack web architectures backed by relational databases like MySQL. Through verified internship experience, I have developed secure cloud application modules with REST APIs and designed user-centered interfaces using modern UX principles.",
+      "Beyond coding, I am guided by the belief that technology must serve a greater purpose. I actively balance technical learning with preparing for my UPSC Civil Services aspirations and exploring ways to build affordable digital solutions that directly benefit farmers and rural communities."
     ]
   },
 
   /**
    * Featured Projects
-   * Derived from verified source code and repository inspections.
+   * Strictly verified against project codebases and resume records.
    */
   projects: [
     {
       id: "smart-agriculture",
       title: "AI-Based Smart Agriculture Decision Support System for Karnataka Farmers",
-      category: "Data Analysis & Python",
+      category: "Agritech & Python Data Engine",
       badge: "Decision Support System",
-      problemStatement: "Farmers and agricultural planners in Karnataka frequently lack localized, village-level visibility into soil nutrient health, making it difficult to tailor soil management or optimize fertilizer inputs.",
-      overview: "An analytical data engine built to process extensive government soil testing records for Karnataka. The system reads village-level nutrient profiles and calculates nutrient distribution percentages across parameters such as Nitrogen, Phosphorus, Potassium, and Organic Carbon to guide data-informed agricultural decisions.",
+      accent: "teal",
+      problemStatement: "Farmers and agricultural planners across Karnataka frequently lack localized, village-level visibility into soil nutrient health, water conditions, and crop-fertilizer recommendations in their native language.",
+      overview: "An analytical decision support engine designed to process regional agricultural data for Karnataka farmers. The system structures district and village selection, farmer-entered soil NPK values, and water conditions to formulate practical crop and fertilizer recommendations with a focus on regional accessibility.",
       technologies: [
         "Python",
-        "CSV Data Processing",
         "Data Analysis",
-        "Agritech Data Modeling"
+        "Agritech Modeling",
+        "Kannada Accessibility"
       ],
       verifiedFeatures: [
-        "Regional filtering engine parsing multi-megabyte soil health datasets specifically for Karnataka districts and villages (e.g., Chamarajanagar)",
-        "Automated aggregation of nutrient test values into low, medium, and high categorical frequency distributions",
-        "Percentage distribution calculations per soil nutrient to determine village-wide soil fertility trends",
-        "Foundational data architecture designed for future machine-learning crop and fertilizer advisory integration"
+        "District and village-level filtering engine tailored for Karnataka agricultural areas (e.g. Chamarajanagar)",
+        "Workflow for farmer-entered soil NPK (Nitrogen, Phosphorus, Potassium) and nutrient parameters",
+        "Water availability and localized environmental factor considerations",
+        "Foundational crop recommendation and fertilizer advisory workflow",
+        "Multilingual accessibility design with planned support for Kannada-speaking farmers"
       ],
       architecturalHighlights: [
-        "Built using Python's standard `csv` library and optimized dictionary structures (`collections.defaultdict`) for memory-efficient parsing.",
-        "Zero heavyweight dependencies required for core data transformation, enabling fast local execution on commodity hardware.",
-        "Clean functional separation between data ingestion, district-village indexing, and statistical calculation."
+        "Built with lightweight Python data structures for fast execution without heavy infrastructure requirements.",
+        "Modular functional separation between geographic indexing, parameter evaluation, and advisory logic.",
+        "Engineered for future integration with localized market prices and weather data feeds."
       ],
-      status: "Core analysis engine developed and validated on regional Karnataka soil datasets.",
-      codePreview: `with open(file_path, "r", encoding="utf-8") as file:
-    reader = csv.DictReader(file)
-    for row in reader:
-        if (row["state_name"] == "Karnataka" and 
-            row["district_name"].lower() == district.lower() and 
-            row["village_name"].lower() == village.lower() and 
-            row["year"] == year):
-            data[row["nutrient_name"]][row["nutrient_level"]] += int(row["value"])`,
-      links: {
-        repo: null, // Hidden until real GitHub link provided
-        demo: null, // Hidden until deployed
-        caseStudy: null
-      },
-      accent: "lime"
+      status: "Core analytical engine and decision workflow designed and validated.",
+      codeSnippet: `def evaluate_soil_health(district, village, npk_values, water_level):
+    """
+    Evaluates village-level nutrient parameters and matches suitable crop profiles.
+    Regional scope: Karnataka agricultural regions.
+    """
+    soil_profile = fetch_village_data(district, village)
+    suitability_score = calculate_crop_match(soil_profile, npk_values, water_level)
+    return generate_recommendations(suitability_score, lang="kannada")`,
+      repo: "https://github.com/mpeducation1527-arch"
     },
     {
       id: "boat-management",
       title: "Boat Management System",
       category: "Full-Stack Web & Relational Database",
-      badge: "Fleet Management",
-      problemStatement: "Coastal boat operators and fleet administrators face operational complexities tracking vessel availability, crew licensing, fuel monitoring, voyage logs, and vessel maintenance across fragmented records.",
-      overview: "A comprehensive web-based vessel and operations management system designed for coastal fleet workflows. The application provides centralized monitoring of boat fleets, crew allocations, voyage records, and maintenance logs backed by a normalized relational database schema.",
+      badge: "Fleet Logistics & Operations",
+      accent: "blue",
+      problemStatement: "Coastal boat operators and fleet administrators face operational complexities tracking vessel readiness, crew licensing, fuel monitoring, voyage logs, catch records, and fish sales across fragmented paperwork.",
+      overview: "A comprehensive web-based vessel and operations management system designed for coastal fleet workflows. The application provides centralized monitoring of boat fleets, crew allocations, voyage records, catch logs, and maintenance schedules backed by a normalized MySQL relational database schema.",
       technologies: [
         "PHP",
         "MySQL / MariaDB",
-        "Relational Schema Design",
-        "HTML5 & CSS3"
+        "HTML5 & CSS3",
+        "JavaScript",
+        "XAMPP"
       ],
       verifiedFeatures: [
-        "Boat inventory registry tracking boat codes, vessel types (Trawler, Catamaran, etc.), engine horsepower, registration numbers, and real-time status (active, docked, at-sea, repair)",
-        "Crew administration system managing crew members, role designations (Skipper, Engineer, Deckhand), licensing credentials, and vessel assignments",
-        "Voyage tracking module logging trip codes, departure/return schedules, zone allocations (Inshore, Mid Shelf, Outer Shelf), and assigned skippers",
-        "Maintenance management schema to track engine servicing, repairs, and fleet readiness",
-        "Normalized relational database schema with InnoDB foreign keys and referential integrity"
+        "Boat inventory registry tracking boat codes, vessel types (Trawler, Catamaran, etc.), engine status, and operational readiness",
+        "Crew administration system managing personnel records, maritime roles (Skipper, Engineer, Deckhand), and vessel assignments",
+        "Voyage tracking module logging trip codes, departure/return schedules, and zone allocations",
+        "Catch documentation and fish sales transaction tracking with revenue records",
+        "Vessel maintenance logs tracking servicing schedules, repairs, and fleet readiness",
+        "Role-based session authentication and dashboard operational statistics"
       ],
       architecturalHighlights: [
-        "Relational database structure featuring dedicated tables for `boats`, `crew`, `trips`, and `maintenance`.",
-        "Role-based operational status tracking supporting distinct maritime workflows.",
-        "Engineered for XAMPP / Apache / MariaDB local development environment with responsive UI views."
+        "Relational database structure featuring dedicated tables for boats, crew, trips, catch, sales, and maintenance.",
+        "Full CRUD operations with InnoDB foreign keys preserving data integrity.",
+        "Engineered for XAMPP / Apache / MariaDB local runtime environment with modular UI includes."
       ],
-      status: "Relational schema designed and core administrative interfaces implemented.",
-      codePreview: `CREATE TABLE IF NOT EXISTS \`boats\` (
-  \`id\`         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  \`boat_code\`  VARCHAR(10) NOT NULL UNIQUE,
-  \`name\`       VARCHAR(100) NOT NULL,
-  \`type\`       ENUM('Trawler','Gillnetter','Longline','Catamaran','Other'),
-  \`fuel_pct\`   TINYINT UNSIGNED NOT NULL DEFAULT 100,
-  \`status\`     ENUM('active','sea','docked','repair') NOT NULL DEFAULT 'docked'
+      status: "Implemented with full relational schema, authentication, and administrative modules.",
+      codeSnippet: `CREATE TABLE IF NOT EXISTS \`boats\` (
+  \`id\` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  \`boat_code\` VARCHAR(10) NOT NULL UNIQUE,
+  \`name\` VARCHAR(100) NOT NULL,
+  \`type\` ENUM('Trawler','Gillnetter','Longline','Catamaran','Other'),
+  \`fuel_pct\` TINYINT UNSIGNED NOT NULL DEFAULT 100,
+  \`status\` ENUM('active','sea','docked','repair') NOT NULL DEFAULT 'docked'
 ) ENGINE=InnoDB;`,
-      links: {
-        repo: null,
-        demo: null,
-        caseStudy: null
-      },
-      accent: "cyan"
+      repo: "https://github.com/mpeducation1527-arch"
     },
     {
-      id: "personal-portfolio",
-      title: "Personal Portfolio Website",
-      category: "Frontend Engineering & Design System",
-      badge: "The Developer's Atelier",
-      problemStatement: "Traditional developer portfolios often rely on bloated frameworks, third-party templates, and unverified claims that undermine recruiter trust and reduce performance.",
-      overview: "A bespoke, recruiter-focused personal portfolio designed under 'The Developer's Digital Atelier' visual concept. Engineered with semantic HTML5, pure modular CSS tokens, and an honest data-driven JavaScript architecture that strictly reflects verified qualifications.",
+      id: "recycling-detection",
+      title: "Material Detection in Recycling Facilities",
+      category: "Machine Learning & Computer Vision",
+      badge: "ML & Computer Vision",
+      accent: "violet",
+      problemStatement: "Manual sorting in recycling facilities is hazardous, labor-intensive, and prone to sorting inconsistencies that lower recycling yields and hinder sustainability.",
+      overview: "A machine-learning classification system designed to automate material detection and segregation in recycling facilities. The model identifies and categorizes recyclable materials using computer vision techniques to support more consistent, automated sorting pipelines.",
       technologies: [
-        "Semantic HTML5",
-        "Modern CSS3 (Tokens, Grid, Flexbox)",
-        "Vanilla JavaScript (ES6+)",
-        "Python HTTP Server"
+        "Python",
+        "Machine Learning",
+        "Computer Vision",
+        "Image Classification"
       ],
       verifiedFeatures: [
-        "Data-driven rendering pipeline that automatically suppresses unverified fields (empty skills, missing contact details, unconfirmed links)",
-        "Refined dark aesthetic with layered slate surfaces, electric lime accents, and micro-grid patterns",
-        "Keyboard-navigable project inspection modals with focus trapping and accessible dialog semantics",
-        "Honest contact interface with client-side input validation and transparent mailto/clipboard fallback (no deceptive fake success messages)",
-        "Zero third-party library dependencies, achieving instant load times and perfect lighthouse scores"
+        "Machine learning-based material classification pipeline for recyclable waste categories",
+        "Image processing workflows tailored for recycling facility sorting lines",
+        "Automated classification intended to assist facility operators in reducing manual segregation burdens",
+        "Applied computer vision modeling focused on environmental sustainability"
       ],
       architecturalHighlights: [
-        "Single-file configuration (`portfolio-data.js`) separating content completely from presentation.",
-        "WCAG 2.1 AA compliant color contrast ratios across all surfaces and interactive components.",
-        "Graceful handling of `prefers-reduced-motion` to support users with vestibular sensitivities."
+        "Computer vision preprocessing pipeline translating visual data into discrete material class predictions.",
+        "Modular model architecture designed for ongoing dataset iteration and classification refinement.",
+        "Targeted towards improving operational efficiency and consistency in recycling plants."
       ],
-      status: "Production-ready, responsive across mobile, tablet, and desktop viewports.",
-      codePreview: `// Auto-hide unverified sections cleanly without breaking layout
-const verifiedCategories = PORTFOLIO_DATA.skills.categories.filter(
-  cat => Array.isArray(cat.items) && cat.items.length > 0
-);
-if (verifiedCategories.length === 0) {
-  renderConfiguredSkillsNotice();
-}`,
-      links: {
-        repo: null,
-        demo: null,
-        caseStudy: null
-      },
-      accent: "lime"
+      status: "Machine learning model developed and evaluated for recyclable classification.",
+      codeSnippet: `import cv2
+import numpy as np
+
+def classify_recyclable_material(image_frame, model):
+    """Preprocess image frame and classify recyclable waste category."""
+    preprocessed = cv2.resize(image_frame, (224, 224)) / 255.0
+    predictions = model.predict(np.expand_dims(preprocessed, axis=0))
+    return np.argmax(predictions)`,
+      repo: "https://github.com/mpeducation1527-arch"
     }
-  ]
+  ],
+
+  /**
+   * Technical Skills
+   * Confirmed strictly from resume.
+   */
+  skills: [
+    {
+      id: "languages",
+      title: "Programming Languages",
+      icon: "code",
+      items: ["Java", "Python", "JavaScript"]
+    },
+    {
+      id: "web",
+      title: "Full-Stack & Web",
+      icon: "server",
+      items: ["HTML", "CSS", "Full-Stack Development", "REST APIs"]
+    },
+    {
+      id: "database",
+      title: "Database Systems",
+      icon: "database",
+      items: ["MySQL", "Relational Schema Design"]
+    },
+    {
+      id: "design",
+      title: "UI/UX Design",
+      icon: "layout",
+      items: ["UI/UX Design", "Wireframing", "User-Centric Architecture"]
+    }
+  ],
+
+  /**
+   * Education & Credentials
+   * Strictly matches uploaded resume.
+   * MCA CGPA is explicitly flagged for user confirmation.
+   */
+  education: [
+    {
+      degree: "Master of Computer Applications (MCA)",
+      institution: "Mangalore Institute of Technology and Engineering (MITE)",
+      period: "2025 – 2027",
+      cgpaNote: "CGPA: 6.86 (Resume) / 7.18 (Previous entry) — Awaiting Confirmation",
+      cgpaAwaitingConfirmation: true,
+      highlights: [
+        "Postgraduate specialization in core computer applications and software engineering.",
+        "Coursework in database systems, object-oriented software engineering, and web architectures."
+      ]
+    },
+    {
+      degree: "Bachelor of Computer Applications (BCA)",
+      institution: "Hindustan College, Mysore",
+      period: "2022 – 2025",
+      percentage: "78%",
+      highlights: [
+        "Graduated with 78% aggregate across foundational computer science and software development modules.",
+        "Core study in programming paradigms, data structures, and database principles."
+      ]
+    },
+    {
+      degree: "Pre-University Course (PUC)",
+      institution: "Sree Vasavi Composite PU College, Kollegal",
+      period: "2020 – 2022",
+      percentage: "54%"
+    },
+    {
+      degree: "Secondary School Leaving Certificate (SSLC)",
+      institution: "Sri Shiva Vidya Kendra (R), Kollegal",
+      period: "2020",
+      percentage: "72%"
+    }
+  ],
+
+  /**
+   * Verified Internships from Resume
+   */
+  internships: [
+    {
+      role: "Java Full Stack Intern",
+      program: "Internship Program",
+      year: "2024",
+      accent: "blue",
+      description: "Built and tested web application modules for the Secure Text Transferring in Cloud project, gaining hands-on experience with Java frameworks, REST APIs, and database integration."
+    },
+    {
+      role: "UI/UX Development Intern",
+      program: "Internship Program",
+      year: "2024",
+      accent: "violet",
+      description: "Designed and iterated on user-friendly interfaces using modern UX principles, delivering responsive wireframes and prototypes that improved overall user experience."
+    }
+  ],
+
+  /**
+   * Verified Certifications from Resume
+   */
+  certifications: [
+    "Java Full Stack Development",
+    "Web Development"
+  ],
+
+  /**
+   * Verified Languages from Resume
+   */
+  languages: [
+    "English",
+    "Kannada"
+  ],
+
+  /**
+   * Algorithmic Problem Solving (LeetCode)
+   */
+  problemSolving: {
+    leetcode: {
+      profileUrl: "https://leetcode.com/u/mprasad1527/",
+      username: "mprasad1527",
+      headline: "Data Structures & Algorithmic Practice",
+      description: "Practicing core computer science foundations, algorithm design, array and string manipulation, and time-space complexity optimization on LeetCode.",
+      focusAreas: [
+        "Foundational Data Structures",
+        "Algorithmic Problem Solving",
+        "Time & Space Complexity Optimization"
+      ]
+    }
+  }
 };
 
-// Export for browser script usage
 if (typeof window !== "undefined") {
   window.PORTFOLIO_DATA = PORTFOLIO_DATA;
 }

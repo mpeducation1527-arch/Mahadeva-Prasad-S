@@ -1,52 +1,75 @@
 /**
- * THE DEVELOPER'S DIGITAL ATELIER — DESIGN TOKENS
- * Premium Dark Theme with Electric Lime Accents
+ * ====================================================================
+ * MAHADEVA PRASAD S — DESIGN TOKENS
+ * Concept: "Technology with Purpose"
+ * Palette: Deep Navy Foundation with Electric Blue, Violet, & Teal Accents
+ * ====================================================================
  */
 
 :root {
-  /* Color Palette - Neutrals & Slate Surfaces */
-  --bg-primary: #07090e;
-  --bg-secondary: #0d111a;
-  --bg-tertiary: #131926;
-  --bg-surface: #182030;
-  --bg-surface-elevated: #1e283d;
-  --bg-surface-hover: #243048;
-  
+  /* Color Palette - Deep Navy & Charcoal Surfaces */
+  --bg-primary: #070b14;
+  --bg-secondary: #0d1424;
+  --bg-tertiary: #121c33;
+  --bg-surface: #182442;
+  --bg-surface-elevated: #1e2e54;
+  --bg-surface-hover: #253966;
+  --bg-glass: rgba(18, 28, 51, 0.72);
+  --bg-glass-card: rgba(24, 36, 66, 0.55);
+
   /* Borders & Dividers */
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-default: rgba(255, 255, 255, 0.12);
-  --border-strong: rgba(255, 255, 255, 0.20);
-  --border-accent: rgba(163, 230, 53, 0.35);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-default: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.22);
+  --border-blue: rgba(59, 130, 246, 0.35);
+  --border-violet: rgba(139, 92, 246, 0.35);
+  --border-teal: rgba(20, 184, 166, 0.35);
 
-  /* Primary Accent: Electric Lime */
-  --accent-primary: #a3e635;
-  --accent-primary-hover: #bef264;
-  --accent-primary-muted: rgba(163, 230, 53, 0.12);
-  --accent-primary-glow: rgba(163, 230, 53, 0.25);
-  --accent-text: #07090e;
+  /* Primary Accent: Electric Blue (Technology & Engineering) */
+  --accent-blue: #3b82f6;
+  --accent-blue-hover: #60a5fa;
+  --accent-blue-muted: rgba(59, 130, 246, 0.12);
+  --accent-blue-glow: rgba(59, 130, 246, 0.28);
+  --accent-blue-text: #ffffff;
 
-  /* Secondary Accent: Technical Cyan (for subtle badges/diagrams) */
-  --accent-cyan: #38bdf8;
-  --accent-cyan-muted: rgba(56, 189, 248, 0.12);
-  --accent-cyan-border: rgba(56, 189, 248, 0.3);
+  /* Secondary Accent: Violet / Royal Purple (Public Service & UPSC Dream) */
+  --accent-violet: #8b5cf6;
+  --accent-violet-hover: #a78bfa;
+  --accent-violet-muted: rgba(139, 92, 246, 0.12);
+  --accent-violet-glow: rgba(139, 92, 246, 0.28);
+  --accent-violet-border: rgba(139, 92, 246, 0.35);
+
+  /* Tertiary Accent: Subtle Teal (Rural Impact & Agriculture) */
+  --accent-teal: #14b8a6;
+  --accent-teal-hover: #2dd4bf;
+  --accent-teal-muted: rgba(20, 184, 166, 0.12);
+  --accent-teal-glow: rgba(20, 184, 166, 0.28);
+  --accent-teal-border: rgba(20, 184, 166, 0.35);
+
+  /* Primary Accent Alias for generic components */
+  --accent-primary: var(--accent-blue);
+  --accent-primary-hover: var(--accent-blue-hover);
+  --accent-primary-muted: var(--accent-blue-muted);
+  --accent-primary-glow: var(--accent-blue-glow);
+  --accent-text: #ffffff;
 
   /* Functional Status Colors */
-  --color-success: #4ade80;
-  --color-warning: #facc15;
-  --color-info: #60a5fa;
-  --color-error: #f87171;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+  --color-error: #ef4444;
 
   /* Text Colors */
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
   --text-dim: #475569;
-  --text-accent: #a3e635;
+  --text-accent: #60a5fa;
 
   /* Typography */
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  
+
   /* Font Sizes */
   --text-xs: 0.75rem;     /* 12px */
   --text-sm: 0.875rem;    /* 14px */
@@ -75,23 +98,25 @@
   --space-32: 8rem;
 
   /* Layout */
-  --max-width: 1200px;
+  --max-width: 1240px;
   --header-height: 72px;
 
   /* Border Radii */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-2xl: 24px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-2xl: 28px;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 24px rgba(163, 230, 53, 0.15);
+  /* Shadows & Elevations */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.65);
+  --shadow-blue-glow: 0 0 28px rgba(59, 130, 246, 0.2);
+  --shadow-violet-glow: 0 0 28px rgba(139, 92, 246, 0.2);
+  --shadow-teal-glow: 0 0 28px rgba(20, 184, 166, 0.2);
 
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);

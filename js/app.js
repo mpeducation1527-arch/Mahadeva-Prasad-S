@@ -1,6 +1,8 @@
 /**
- * THE DEVELOPER'S DIGITAL ATELIER — APPLICATION LOGIC
- * Navigation, accessibility, modal dialog, honest form handling, toast notifications.
+ * ====================================================================
+ * MAHADEVA PRASAD S — APPLICATION LOGIC
+ * Navigation, modal inspector, honest contact draft workflow, toast.
+ * ====================================================================
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -118,76 +120,88 @@ function initScrollSpy() {
  */
 function initProjectModals() {
   const modalBackdrop = document.getElementById("project-modal");
-  const closeBtn = document.getElementById("modal-close-btn");
-  const modalTitle = document.getElementById("modal-title");
-  const modalSubtitle = document.getElementById("modal-subtitle");
-  const modalProblem = document.getElementById("modal-problem");
-  const modalOverview = document.getElementById("modal-overview");
-  const modalTechTags = document.getElementById("modal-tech-tags");
-  const modalFeatures = document.getElementById("modal-features");
-  const modalArchitecture = document.getElementById("modal-architecture");
-  const modalCode = document.getElementById("modal-code");
-  const modalStatus = document.getElementById("modal-status");
-
+  const modalCloseBtn = document.getElementById("modal-close-btn");
+  const modalFooterCloseBtn = document.getElementById("modal-footer-close-btn");
   let lastFocusedElement = null;
 
-  // Open modal button listeners
+  if (!modalBackdrop) return;
+
+  // Delegate clicks on "Inspect Architecture" buttons
   document.addEventListener("click", (e) => {
     const trigger = e.target.closest(".js-open-project-modal");
-    if (trigger) {
-      const projectId = trigger.getAttribute("data-project-id");
-      openProjectModal(projectId, trigger);
+    if (!trigger) return;
+
+    const projectId = trigger.getAttribute("data-project-id");
+    const project = window.PORTFOLIO_DATA?.projects?.find(p => p.id === projectId);
+
+    if (project) {
+      lastFocusedElement = trigger;
+      openModal(project);
     }
   });
 
-  function openProjectModal(projectId, trigger) {
-    const project = window.PORTFOLIO_DATA.projects.find(p => p.id === projectId);
-    if (!project || !modalBackdrop) return;
+  function openModal(project) {
+    document.getElementById("modal-title").textContent = project.title;
+    document.getElementById("modal-subtitle").textContent = `// ${project.badge.toUpperCase()}`;
+    document.getElementById("modal-problem").textContent = project.problemStatement;
+    document.getElementById("modal-overview").textContent = project.overview;
 
-    lastFocusedElement = trigger;
+    // Tech Tags
+    const tagsContainer = document.getElementById("modal-tech-tags");
+    if (tagsContainer) {
+      tagsContainer.innerHTML = project.technologies.map(t => `<span class="tech-tag">${t}</span>`).join("");
+    }
 
-    modalTitle.textContent = project.title;
-    modalSubtitle.textContent = `// ${project.badge} • ${project.category}`;
-    modalProblem.textContent = project.problemStatement;
-    modalOverview.textContent = project.overview;
-
-    modalTechTags.innerHTML = project.technologies
-      .map(t => `<span class="tech-tag">${t}</span>`)
-      .join("");
-
-    modalFeatures.innerHTML = project.verifiedFeatures
-      .map(f => `
-        <li class="feature-bullet">
+    // Verified Features
+    const featuresContainer = document.getElementById("modal-features");
+    if (featuresContainer) {
+      featuresContainer.innerHTML = project.verifiedFeatures.map(f => `
+        <li class="modal-feature-item">
           ${ICONS.check}
           <span>${f}</span>
         </li>
-      `)
-      .join("");
+      `).join("");
+    }
 
-    modalArchitecture.innerHTML = project.architecturalHighlights
-      .map(h => `
-        <li class="feature-bullet">
-          ${ICONS.check}
-          <span>${h}</span>
+    // Architectural Highlights
+    const archContainer = document.getElementById("modal-architecture");
+    if (archContainer) {
+      archContainer.innerHTML = project.architecturalHighlights.map(a => `
+        <li class="modal-feature-item">
+          ${ICONS.arrowRight}
+          <span>${a}</span>
         </li>
-      `)
-      .join("");
+      `).join("");
+    }
 
-    modalCode.textContent = project.codePreview || "// Code preview verified from local implementation.";
-    modalStatus.textContent = project.status;
+    // Code Snippet
+    const codeBlock = document.getElementById("modal-code");
+    if (codeBlock) {
+      codeBlock.textContent = project.codeSnippet || "// Code preview verified and maintained in repository.";
+    }
+
+    // Status
+    const statusEl = document.getElementById("modal-status");
+    if (statusEl) {
+      statusEl.textContent = project.status;
+    }
+
+    // Repo Link
+    const repoBtn = document.getElementById("modal-repo-btn");
+    if (repoBtn) {
+      repoBtn.href = project.repo || window.PORTFOLIO_DATA?.social?.github;
+    }
 
     modalBackdrop.classList.add("open");
     modalBackdrop.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
 
-    // Focus close button for keyboard accessibility
-    setTimeout(() => {
-      closeBtn.focus();
-    }, 100);
+    if (modalCloseBtn) {
+      modalCloseBtn.focus();
+    }
   }
 
   function closeModal() {
-    if (!modalBackdrop) return;
     modalBackdrop.classList.remove("open");
     modalBackdrop.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
@@ -197,29 +211,29 @@ function initProjectModals() {
     }
   }
 
-  if (closeBtn) {
-    closeBtn.addEventListener("click", closeModal);
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener("click", closeModal);
   }
 
-  // Backdrop click close
-  if (modalBackdrop) {
-    modalBackdrop.addEventListener("click", (e) => {
-      if (e.target === modalBackdrop) {
-        closeModal();
-      }
-    });
+  if (modalFooterCloseBtn) {
+    modalFooterCloseBtn.addEventListener("click", closeModal);
   }
 
-  // Escape key close
+  modalBackdrop.addEventListener("click", (e) => {
+    if (e.target === modalBackdrop) {
+      closeModal();
+    }
+  });
+
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modalBackdrop && modalBackdrop.classList.contains("open")) {
+    if (e.key === "Escape" && modalBackdrop.classList.contains("open")) {
       closeModal();
     }
   });
 }
 
 /**
- * Honest Contact Form Handling
+ * Contact Form Logic (Honest Draft Workflow)
  */
 function initContactForm() {
   const form = document.getElementById("portfolio-contact-form");
@@ -227,182 +241,115 @@ function initContactForm() {
 
   if (!form) return;
 
-  const nameInput = document.getElementById("contact-name");
-  const emailInput = document.getElementById("contact-email");
-  const subjectInput = document.getElementById("contact-subject");
-  const messageInput = document.getElementById("contact-message");
-
-  // Inline error containers
-  const nameError = document.getElementById("name-error");
-  const emailError = document.getElementById("email-error");
-  const subjectError = document.getElementById("subject-error");
-  const messageError = document.getElementById("message-error");
-
-  function validateEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  function getFormData() {
+    return {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      subject: form.subject.value.trim(),
+      message: form.message.value.trim()
+    };
   }
 
   function validate() {
     let isValid = true;
+    const { name, email, subject, message } = getFormData();
 
-    // Name validation
-    if (!nameInput.value.trim() || nameInput.value.trim().length < 2) {
-      nameError.textContent = "Please enter your name (minimum 2 characters).";
-      nameError.classList.add("active");
-      nameInput.classList.add("is-invalid");
+    // Name
+    const nameErr = document.getElementById("name-error");
+    if (!name) {
+      nameErr.textContent = "Please enter your name.";
+      nameErr.classList.add("visible");
       isValid = false;
     } else {
-      nameError.classList.remove("active");
-      nameInput.classList.remove("is-invalid");
+      nameErr.classList.remove("visible");
     }
 
-    // Email validation
-    if (!validateEmail(emailInput.value.trim())) {
-      emailError.textContent = "Please enter a valid email address.";
-      emailError.classList.add("active");
-      emailInput.classList.add("is-invalid");
+    // Email
+    const emailErr = document.getElementById("email-error");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      emailErr.textContent = "Please provide a valid email address.";
+      emailErr.classList.add("visible");
       isValid = false;
     } else {
-      emailError.classList.remove("active");
-      emailInput.classList.remove("is-invalid");
+      emailErr.classList.remove("visible");
     }
 
-    // Subject validation
-    if (!subjectInput.value.trim() || subjectInput.value.trim().length < 3) {
-      subjectError.textContent = "Please enter a subject (minimum 3 characters).";
-      subjectError.classList.add("active");
-      subjectInput.classList.add("is-invalid");
+    // Subject
+    const subjectErr = document.getElementById("subject-error");
+    if (!subject) {
+      subjectErr.textContent = "Please provide a subject line.";
+      subjectErr.classList.add("visible");
       isValid = false;
     } else {
-      subjectError.classList.remove("active");
-      subjectInput.classList.remove("is-invalid");
+      subjectErr.classList.remove("visible");
     }
 
-    // Message validation
-    if (!messageInput.value.trim() || messageInput.value.trim().length < 10) {
-      messageError.textContent = "Please enter your message (minimum 10 characters).";
-      messageError.classList.add("active");
-      messageInput.classList.add("is-invalid");
+    // Message
+    const msgErr = document.getElementById("message-error");
+    if (!message) {
+      msgErr.textContent = "Please write a brief message.";
+      msgErr.classList.add("visible");
       isValid = false;
     } else {
-      messageError.classList.remove("active");
-      messageInput.classList.remove("is-invalid");
+      msgErr.classList.remove("visible");
     }
 
     return isValid;
   }
 
-  // Clear errors on input
-  [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
-    input.addEventListener("input", () => {
-      input.classList.remove("is-invalid");
-      const err = document.getElementById(`${input.id.replace("contact-", "")}-error`);
-      if (err) err.classList.remove("active");
-    });
-  });
-
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (!validate()) return;
 
-    if (!validate()) {
-      return;
-    }
+    const data = getFormData();
+    const recipient = window.PORTFOLIO_DATA?.personal?.email || "mahadevaprasads84@gmail.com";
+    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(
+      `Hello Mahadeva Prasad,\n\n${data.message}\n\nBest regards,\n${data.name}\n${data.email}`
+    )}`;
 
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
-    const subject = subjectInput.value.trim();
-    const message = messageInput.value.trim();
-
-    // Recipient email from config if available, otherwise prompt transparently
-    const targetEmail = (window.PORTFOLIO_DATA.personal.email && window.PORTFOLIO_DATA.personal.email.trim() !== "")
-      ? window.PORTFOLIO_DATA.personal.email
-      : "";
-
-    const formattedBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-
-    if (targetEmail) {
-      // Launch user's default email client with draft
-      const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(formattedBody)}`;
-      window.location.href = mailtoUrl;
-      showToast("Opening your default mail client with message pre-filled...", "info");
-    } else {
-      // Honest notification when recipient address is not yet configured
-      copyToClipboard(
-        `Subject: ${subject}\nFrom: ${name} (${email})\n\n${message}`,
-        "Message copied to clipboard! You can paste and send this via your preferred email or messaging platform."
-      );
-    }
+    window.location.href = mailtoUrl;
+    showToast("Opening default email client with your drafted message...");
   });
 
   if (copyBtn) {
     copyBtn.addEventListener("click", () => {
-      const name = nameInput.value.trim() || "[Your Name]";
-      const email = emailInput.value.trim() || "[Your Email]";
-      const subject = subjectInput.value.trim() || "Full-Stack Developer Opportunity";
-      const message = messageInput.value.trim() || "[Your Message]";
+      const data = getFormData();
+      const textToCopy = `To: ${window.PORTFOLIO_DATA?.personal?.email || "mahadevaprasads84@gmail.com"}\nSubject: ${data.subject || "Software Developer Opportunity"}\n\nMessage:\n${data.message || "(No message body)"}\n\nFrom: ${data.name || "(Anonymous)"} (${data.email || "No email"})`;
 
-      const textToCopy = `Subject: ${subject}\nSender: ${name} <${email}>\n\nMessage:\n${message}`;
-      copyToClipboard(textToCopy, "Draft copied to clipboard!");
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          showToast("Draft copied to clipboard!");
+        }).catch(() => {
+          showToast("Unable to copy to clipboard.");
+        });
+      } else {
+        showToast("Clipboard access not supported.");
+      }
     });
   }
 }
 
 /**
- * Toast notification system
+ * Toast Notification Helper
  */
-function showToast(message, type = "success") {
+function showToast(message) {
   const container = document.getElementById("toast-container");
   if (!container) return;
 
   const toast = document.createElement("div");
-  toast.className = `toast ${type}`;
+  toast.className = "toast";
   toast.innerHTML = `
-    ${type === "success" ? ICONS.check : ICONS.info}
+    ${ICONS.info}
     <span>${message}</span>
   `;
 
   container.appendChild(toast);
 
-  // Trigger animation
-  requestAnimationFrame(() => {
-    toast.classList.add("show");
-  });
-
   setTimeout(() => {
-    toast.classList.remove("show");
-    setTimeout(() => {
-      toast.remove();
-    }, 300);
+    toast.style.opacity = "0";
+    toast.style.transform = "translateY(10px)";
+    toast.style.transition = "all 250ms ease";
+    setTimeout(() => toast.remove(), 250);
   }, 4000);
-}
-
-/**
- * Clipboard utility
- */
-function copyToClipboard(text, successMessage) {
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(() => {
-      showToast(successMessage, "success");
-    }).catch(() => {
-      fallbackCopy(text, successMessage);
-    });
-  } else {
-    fallbackCopy(text, successMessage);
-  }
-}
-
-function fallbackCopy(text, successMessage) {
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  textarea.style.position = "fixed";
-  textarea.style.opacity = "0";
-  document.body.appendChild(textarea);
-  textarea.select();
-  try {
-    document.execCommand("copy");
-    showToast(successMessage, "success");
-  } catch (err) {
-    showToast("Unable to copy to clipboard.", "info");
-  }
-  document.body.removeChild(textarea);
 }

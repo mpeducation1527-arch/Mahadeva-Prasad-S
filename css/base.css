@@ -1,5 +1,8 @@
 /**
- * THE DEVELOPER'S DIGITAL ATELIER — BASE & RESET
+ * ====================================================================
+ * MAHADEVA PRASAD S — BASE & RESET
+ * Deep Navy / Charcoal foundation with smooth typography
+ * ====================================================================
  */
 
 *, *::before, *::after {
@@ -28,7 +31,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle Atelier Engineering Grid Pattern */
+/* Deep Ambient Glows & Subtle Architectural Grid */
 body::before {
   content: "";
   position: fixed;
@@ -39,21 +42,44 @@ body::before {
   pointer-events: none;
   z-index: 0;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 54px 54px;
 }
 
-/* Subtle Ambient Radial Glow */
-body::after {
-  content: "";
+/* Ambient Radial Gradients: Blue top-left, Violet mid-right, Teal bottom-left */
+.ambient-glow-blue {
   position: fixed;
-  top: -10vw;
+  top: -12vw;
+  left: -8vw;
+  width: 45vw;
+  height: 45vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-glow-violet {
+  position: fixed;
+  top: 35vh;
   right: -10vw;
   width: 50vw;
   height: 50vw;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(163, 230, 53, 0.035) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.065) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-glow-teal {
+  position: fixed;
+  bottom: -15vw;
+  left: 20vw;
+  width: 45vw;
+  height: 45vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.06) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -62,22 +88,22 @@ body::after {
 h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
   font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-h1 {
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
-  letter-spacing: -0.03em;
-}
-
-h2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.25;
   letter-spacing: -0.025em;
 }
 
+h1 {
+  font-size: clamp(2.35rem, 5.2vw, 3.85rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  font-size: clamp(1.85rem, 3.6vw, 2.65rem);
+  letter-spacing: -0.03em;
+}
+
 h3 {
-  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
 }
 
 h4 {
@@ -88,6 +114,7 @@ p {
   color: var(--text-secondary);
   font-size: var(--text-base);
   margin-bottom: var(--space-4);
+  line-height: 1.7;
 }
 
 p:last-child {
@@ -95,13 +122,13 @@ p:last-child {
 }
 
 a {
-  color: var(--accent-primary);
+  color: var(--accent-blue-hover);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
 a:hover {
-  color: var(--accent-primary-hover);
+  color: var(--text-primary);
 }
 
 ul, ol {
@@ -113,62 +140,50 @@ img, svg {
   max-width: 100%;
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
-  color: inherit;
+code, pre {
+  font-family: var(--font-mono);
 }
 
-input, textarea, select {
-  font-family: inherit;
-  font-size: var(--text-base);
+/* Focus Visibility for Accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+}
+
+/* Selection Highlight */
+::selection {
+  background-color: rgba(59, 130, 246, 0.35);
   color: var(--text-primary);
 }
 
-code, pre {
-  font-family: var(--font-mono);
-  font-size: 0.9em;
+/* Screen Reader Only Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
-/* Accessible Focus States */
-:focus-visible {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: 3px;
-  border-radius: var(--radius-sm);
-}
-
-/* Custom Minimalist Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-
-::-webkit-scrollbar-thumb {
+.sr-only:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 9999;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1.25rem;
   background: var(--bg-surface-elevated);
-  border-radius: var(--radius-full);
-  border: 2px solid var(--bg-primary);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-dim);
-}
-
-/* Reduced Motion Preference */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+  color: var(--accent-blue-hover);
+  border: 1px solid var(--border-blue);
+  border-radius: var(--radius-md);
+  clip: auto;
+  clip-path: none;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
 }

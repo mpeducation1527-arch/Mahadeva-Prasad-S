@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-THE DEVELOPER'S DIGITAL ATELIER — LOCAL DEV SERVER
-A clean, lightweight HTTP server for Mahadevaprasad S's Portfolio.
+MAHADEVA PRASAD S — LOCAL DEV SERVER
+Personal Brand: "Technology with Purpose"
+A clean, lightweight HTTP server for Mahadeva Prasad S's Portfolio.
 """
 
 import http.server
@@ -13,7 +14,7 @@ import webbrowser
 PORT = 8000
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
-class AtelierHTTPHandler(http.server.SimpleHTTPRequestHandler):
+class PurposePortfolioHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
 
@@ -29,7 +30,7 @@ class AtelierHTTPHandler(http.server.SimpleHTTPRequestHandler):
 
 def run():
     os.chdir(DIRECTORY)
-    handler = AtelierHTTPHandler
+    handler = PurposePortfolioHandler
 
     # Allow port reuse
     socketserver.TCPServer.allow_reuse_address = True
@@ -38,8 +39,8 @@ def run():
         with socketserver.TCPServer(("", PORT), handler) as httpd:
             url = f"http://localhost:{PORT}"
             print("=" * 65)
-            print("  THE DEVELOPER'S DIGITAL ATELIER — LOCAL SERVER")
-            print(f"  Target: Mahadevaprasad S Portfolio")
+            print("  MAHADEVA PRASAD S — PORTFOLIO LOCAL SERVER")
+            print("  Concept: 'Technology with Purpose'")
             print(f"  Serving directory: {DIRECTORY}")
             print(f"  Local URL: {url}")
             print("=" * 65)

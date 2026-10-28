@@ -1,13 +1,12 @@
 /**
- * THE DEVELOPER'S DIGITAL ATELIER — DATA RENDERER
+ * ====================================================================
+ * MAHADEVA PRASAD S — DATA RENDERER
  * Dynamically binds verified data to semantic DOM elements.
- * Strictly hides/omits unverified fields.
+ * "Technology with Purpose" Architecture
+ * ====================================================================
  */
 
 const PortfolioRenderer = {
-  /**
-   * Initializes all data bindings
-   */
   init(data) {
     if (!data) {
       console.error("Portfolio data not found.");
@@ -17,17 +16,18 @@ const PortfolioRenderer = {
     this.data = data;
     this.renderHeader();
     this.renderHero();
-    this.renderAbout();
-    this.renderSkills();
+    this.renderVision();
     this.renderProjects();
-    this.renderEducationTraining();
+    this.renderSkills();
+    this.renderAbout();
+    this.renderEducationAndExperience();
     this.renderProblemSolving();
     this.renderContact();
     this.renderFooter();
   },
 
   /**
-   * Header navigation & resume link handling
+   * Header navigation and direct Resume button
    */
   renderHeader() {
     const brandNameEl = document.getElementById("header-brand-name");
@@ -37,194 +37,152 @@ const PortfolioRenderer = {
       brandNameEl.textContent = this.data.personal.name;
     }
 
-    // Only render Resume button if a verified URL/file is provided
-    if (resumeContainerEl) {
-      if (this.data.personal.resumeUrl && this.data.personal.resumeUrl.trim() !== "") {
-        resumeContainerEl.innerHTML = `
-          <a href="${this.data.personal.resumeUrl}" class="btn btn-outline-accent btn-sm" target="_blank" rel="noopener noreferrer">
-            <span>Resume</span>
-            ${ICONS.externalLink}
-          </a>
-        `;
-        resumeContainerEl.style.display = "block";
-      } else {
-        resumeContainerEl.innerHTML = "";
-        resumeContainerEl.style.display = "none";
-      }
+    if (resumeContainerEl && this.data.personal.resumeUrl) {
+      resumeContainerEl.innerHTML = `
+        <a href="${this.data.personal.resumeUrl}" class="btn btn-outline-blue btn-sm" target="_blank" rel="noopener noreferrer" aria-label="Download or View Resume PDF">
+          <span>Resume</span>
+          ${ICONS.download}
+        </a>
+      `;
+      resumeContainerEl.style.display = "block";
     }
   },
 
   /**
-   * Hero section data binding
+   * Hero section data binding & verified social profiles
    */
   renderHero() {
-    const metaLabelEl = document.getElementById("hero-meta-label");
+    const roleBadgeEl = document.getElementById("hero-role-badge");
     const nameEl = document.getElementById("hero-name");
     const headlineEl = document.getElementById("hero-headline");
     const introEl = document.getElementById("hero-intro");
-    const heroLeetcodeEl = document.getElementById("hero-leetcode-link");
-    const heroGithubEl = document.getElementById("hero-github-link");
+    const heroResumeBtnEl = document.getElementById("hero-resume-btn");
+    const stripLinksEl = document.getElementById("hero-strip-links");
 
-    if (metaLabelEl) metaLabelEl.textContent = this.data.personal.roleLabel;
+    if (roleBadgeEl) roleBadgeEl.textContent = this.data.personal.statusBadge;
     if (nameEl) nameEl.textContent = this.data.personal.name;
-    if (headlineEl) headlineEl.innerHTML = `Building <span class="highlight">thoughtful software</span> for real-world problems.`;
-    if (introEl) introEl.textContent = this.data.personal.shortIntro;
+    if (headlineEl) {
+      headlineEl.innerHTML = `Building <span class="text-gradient-blue">Technology with Purpose.</span>`;
+    }
+    if (introEl) introEl.textContent = this.data.personal.intro;
 
-    if (heroLeetcodeEl && this.data.problemSolving.leetcode.profileUrl) {
-      heroLeetcodeEl.href = this.data.problemSolving.leetcode.profileUrl;
-      heroLeetcodeEl.innerHTML = `
-        ${ICONS.leetcode}
-        <span>leetcode.com/u/${this.data.problemSolving.leetcode.username}</span>
-        ${ICONS.externalLink}
-      `;
+    if (heroResumeBtnEl && this.data.personal.resumeUrl) {
+      heroResumeBtnEl.href = this.data.personal.resumeUrl;
+      heroResumeBtnEl.innerHTML = `<span>View Resume</span> ${ICONS.download}`;
     }
 
-    if (heroGithubEl && this.data.social.github && this.data.social.github.trim() !== "") {
-      const githubUsername = this.data.social.github.replace(/\/$/, '').split('/').pop();
-      heroGithubEl.href = this.data.social.github;
-      heroGithubEl.innerHTML = `
-        ${ICONS.github}
-        <span>github.com/${githubUsername}</span>
-        ${ICONS.externalLink}
+    if (stripLinksEl) {
+      stripLinksEl.innerHTML = `
+        <a href="${this.data.social.linkedin}" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+          ${ICONS.linkedin}
+          <span>LinkedIn</span>
+        </a>
+        <a href="${this.data.social.github}" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+          ${ICONS.github}
+          <span>GitHub</span>
+        </a>
+        <a href="${this.data.social.leetcode}" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer" aria-label="LeetCode Profile">
+          ${ICONS.leetcode}
+          <span>LeetCode</span>
+        </a>
       `;
-      heroGithubEl.style.display = "inline-flex";
     }
   },
 
   /**
-   * About Me narrative & compact education card
+   * Beyond Code — My Vision Section
    */
-  renderAbout() {
-    const narrativeContainer = document.getElementById("about-narrative");
-    const eduCgpaEl = document.getElementById("about-edu-cgpa");
-    const eduHighlightsEl = document.getElementById("about-edu-highlights");
+  renderVision() {
+    const container = document.getElementById("vision-cards-container");
+    if (!container || !this.data.vision) return;
 
-    if (narrativeContainer && this.data.personal.aboutNarrative) {
-      narrativeContainer.innerHTML = this.data.personal.aboutNarrative
-        .map(paragraph => `<p>${paragraph}</p>`)
-        .join("");
-    }
+    container.innerHTML = this.data.vision.pillars.map(pillar => {
+      let iconSvg = ICONS.code;
+      let cardClass = "vision-tech";
+      let badgeClass = "badge-blue";
 
-    if (eduCgpaEl) {
-      eduCgpaEl.textContent = this.data.education.cgpa;
-    }
+      if (pillar.id === "public-service") {
+        iconSvg = ICONS.target;
+        cardClass = "vision-public-service";
+        badgeClass = "badge-violet";
+      } else if (pillar.id === "social-startup") {
+        iconSvg = ICONS.leaf;
+        cardClass = "vision-startup";
+        badgeClass = "badge-teal";
+      }
 
-    if (eduHighlightsEl && this.data.education.highlights) {
-      eduHighlightsEl.innerHTML = this.data.education.highlights
-        .map(h => `
-          <li class="highlight-item">
-            <span class="bullet-icon"></span>
-            <span>${h}</span>
-          </li>
-        `)
-        .join("");
-    }
-  },
-
-  /**
-   * Technical Skills renderer
-   * Shows categories only if verified items exist.
-   * If empty, renders transparent architectural note for recruiters.
-   */
-  renderSkills() {
-    const container = document.getElementById("skills-container");
-    if (!container) return;
-
-    const categories = this.data.skills.categories;
-    const activeCategories = categories.filter(cat => Array.isArray(cat.items) && cat.items.length > 0);
-
-    if (activeCategories.length > 0) {
-      container.innerHTML = `
-        <div class="skills-categories-grid">
-          ${activeCategories.map(cat => `
-            <div class="skill-category-card">
-              <h3 class="skill-category-title">
-                ${ICONS[cat.icon] || ICONS.code}
-                <span>${cat.title}</span>
-              </h3>
-              <div class="skill-chips">
-                ${cat.items.map(skill => `<span class="skill-chip">${skill}</span>`).join("")}
-              </div>
+      return `
+        <article class="card vision-card ${cardClass}">
+          <div class="card-header-icon">
+            <div class="icon-badge icon-badge-${pillar.accent}" aria-hidden="true">
+              ${iconSvg}
             </div>
-          `).join("")}
-        </div>
-      `;
-    } else {
-      // Honest, professional notice explaining the maintained structure
-      container.innerHTML = `
-        <div class="skills-notice">
-          <div class="skills-notice-header">
-            ${ICONS.info}
-            <strong>Technical Skills Architecture: Ready for Verified Input</strong>
+            <div>
+              <span class="vision-pillar-number">${pillar.pillarNumber}</span>
+              <h3 class="vision-title">${pillar.title}</h3>
+            </div>
           </div>
-          <p class="skills-notice-text">
-            In accordance with high verification standards, proficiency lists are reserved strictly for certified and validated competencies rather than arbitrary ratings. The skills data pipeline is structured and categorized in <code>js/portfolio-data.js</code> and will populate automatically as verified technologies are confirmed.
-          </p>
-          <div class="skills-code-sample">
-            <pre>// Configured categories in js/portfolio-data.js:
-[
-  "Programming Languages",
-  "Frontend Development",
-  "Backend Development",
-  "Databases & Storage",
-  "Developer Tools & Platforms"
-]</pre>
+          
+          <p class="vision-body">${pillar.summary}</p>
+
+          <div class="vision-tags-row">
+            ${pillar.tags.map(t => `<span class="badge ${badgeClass}">${t}</span>`).join("")}
           </div>
-        </div>
+        </article>
       `;
-    }
+    }).join("");
   },
 
   /**
-   * Featured Projects renderer
+   * Featured Projects Showcase
    */
   renderProjects() {
     const container = document.getElementById("projects-grid");
-    if (!container) return;
+    if (!container || !this.data.projects) return;
 
-    container.innerHTML = this.data.projects.map((proj, index) => {
-      const isCyan = proj.accent === "cyan";
-      const iconKey = proj.id === "smart-agriculture" ? "leaf" : proj.id === "boat-management" ? "anchor" : "terminal";
+    container.innerHTML = this.data.projects.map((proj, idx) => {
+      let icon = ICONS.leaf;
+      let cardAccentClass = "project-card-teal";
+      let badgeClass = "badge-teal";
+
+      if (proj.id === "boat-management") {
+        icon = ICONS.anchor;
+        cardAccentClass = "project-card-blue";
+        badgeClass = "badge-blue";
+      } else if (proj.id === "recycling-detection") {
+        icon = ICONS.recycle;
+        cardAccentClass = "project-card-violet";
+        badgeClass = "badge-violet";
+      }
 
       return `
-        <article class="project-card" data-project-id="${proj.id}">
+        <article class="project-card ${cardAccentClass}" data-project-id="${proj.id}">
           <div class="project-preview">
-            <div class="project-preview-grid"></div>
-            <div class="project-preview-illustration">
-              <div class="diagram-icon ${isCyan ? "diagram-accent-cyan" : ""}">
-                ${ICONS[iconKey] || ICONS.code}
-              </div>
+            <div class="icon-badge icon-badge-${proj.accent}" style="width: 58px; height: 58px;" aria-hidden="true">
+              ${icon}
             </div>
           </div>
+
           <div class="project-card-body">
-            <div class="project-meta-top">
-              <span class="badge ${isCyan ? "badge-cyan" : "badge-accent"}">${proj.badge}</span>
-              <span class="badge">// 0${index + 1}</span>
-            </div>
-            <h3 class="project-title">${proj.title}</h3>
-            
-            <div class="problem-box ${isCyan ? "problem-box-cyan" : ""}">
-              <div class="problem-box-title">Problem Statement</div>
-              <p class="problem-box-text">${proj.problemStatement}</p>
+            <div class="project-top-row">
+              <span class="badge ${badgeClass}">${proj.badge}</span>
+              <span class="badge">// 0${idx + 1}</span>
             </div>
 
-            <div class="project-tech-tags" aria-label="Technologies used">
+            <h3 class="project-card-title">${proj.title}</h3>
+            <p class="project-desc">${proj.problemStatement}</p>
+
+            <div class="tech-tag-container" aria-label="Technologies used">
               ${proj.technologies.map(t => `<span class="tech-tag">${t}</span>`).join("")}
             </div>
 
-            <ul class="project-features-list" aria-label="Key features">
-              ${proj.verifiedFeatures.slice(0, 3).map(f => `
-                <li class="feature-bullet">
-                  ${ICONS.check}
-                  <span>${f}</span>
-                </li>
-              `).join("")}
-            </ul>
-
-            <div class="project-card-footer">
-              <span class="project-status-note">${proj.status}</span>
-              <button type="button" class="btn btn-secondary btn-sm js-open-project-modal" data-project-id="${proj.id}">
-                <span>Details</span>
+            <div class="project-actions-row">
+              <a href="${proj.repo}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" aria-label="View ${proj.title} on GitHub">
+                ${ICONS.github}
+                <span>Repository</span>
+              </a>
+              <button type="button" class="btn btn-outline-${proj.accent} btn-sm js-open-project-modal" data-project-id="${proj.id}" aria-label="Inspect ${proj.title} Architecture">
+                <span>Inspect Architecture</span>
                 ${ICONS.arrowRight}
               </button>
             </div>
@@ -235,12 +193,115 @@ const PortfolioRenderer = {
   },
 
   /**
-   * Education & L&T Training
+   * Technical Skills Renderer
    */
-  renderEducationTraining() {
-    const trainingSummaryEl = document.getElementById("training-summary");
-    if (trainingSummaryEl) {
-      trainingSummaryEl.textContent = this.data.training.summary;
+  renderSkills() {
+    const container = document.getElementById("skills-container");
+    if (!container || !this.data.skills) return;
+
+    container.innerHTML = `
+      <div class="skills-grid">
+        ${this.data.skills.map(category => `
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="icon-badge icon-badge-blue" style="width: 38px; height: 38px;" aria-hidden="true">
+                ${ICONS[category.icon] || ICONS.code}
+              </div>
+              <h3 class="skill-card-title">${category.title}</h3>
+            </div>
+            <div class="skill-pill-list">
+              ${category.items.map(item => `
+                <div class="skill-pill-item">
+                  <span class="skill-dot"></span>
+                  <span>${item}</span>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  },
+
+  /**
+   * About Me Narrative & Verified Quick Facts
+   */
+  renderAbout() {
+    const narrativeEl = document.getElementById("about-narrative-container");
+    const certsEl = document.getElementById("about-certifications-list");
+    const langsEl = document.getElementById("about-languages-list");
+
+    if (narrativeEl && this.data.about) {
+      narrativeEl.innerHTML = this.data.about.narrative
+        .map(paragraph => `<p>${paragraph}</p>`)
+        .join("");
+    }
+
+    if (certsEl && this.data.certifications) {
+      certsEl.innerHTML = this.data.certifications
+        .map(cert => `
+          <div class="skill-pill-item">
+            ${ICONS.check}
+            <span>${cert}</span>
+          </div>
+        `).join("");
+    }
+
+    if (langsEl && this.data.languages) {
+      langsEl.innerHTML = this.data.languages
+        .map(lang => `<span class="badge badge-blue">${lang}</span>`)
+        .join("");
+    }
+  },
+
+  /**
+   * Education & Verified Internship Timeline
+   */
+  renderEducationAndExperience() {
+    const eduTimelineEl = document.getElementById("education-timeline");
+    const internListEl = document.getElementById("internships-container");
+
+    if (eduTimelineEl && this.data.education) {
+      eduTimelineEl.innerHTML = this.data.education.map(item => {
+        const isMca = item.cgpaAwaitingConfirmation;
+        return `
+          <div class="timeline-item">
+            <div class="timeline-dot ${isMca ? "dot-violet" : ""}"></div>
+            <div class="timeline-content">
+              <div class="timeline-year">${item.period}</div>
+              <h4 class="timeline-title">${item.degree}</h4>
+              <div class="timeline-institution">${item.institution}</div>
+              ${item.percentage ? `<div class="timeline-meta">Aggregate: <strong>${item.percentage}</strong></div>` : ""}
+              ${item.highlights ? `
+                <ul style="margin-top: 8px; display: flex; flex-direction: column; gap: 4px;">
+                  ${item.highlights.map(h => `<li style="font-size: 0.8rem; color: var(--text-secondary); display: flex; gap: 6px;">• <span>${h}</span></li>`).join("")}
+                </ul>
+              ` : ""}
+              ${isMca ? `
+                <div class="cgpa-confirm-box" role="note">
+                  ${ICONS.alert}
+                  <div>
+                    <strong>Data Flag (Awaiting Confirmation):</strong> Resume lists CGPA <strong>6.86</strong>, while a prior profile entry noted <strong>7.18</strong>. Displayed neutrally pending final verification.
+                  </div>
+                </div>
+              ` : ""}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    if (internListEl && this.data.internships) {
+      internListEl.innerHTML = this.data.internships.map(intern => `
+        <div class="card" style="padding: var(--space-5); margin-bottom: var(--space-4);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+            <span class="badge badge-${intern.accent}">${intern.program}</span>
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">${intern.year}</span>
+          </div>
+          <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">${intern.role}</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">${intern.description}</p>
+        </div>
+      `).join("");
     }
   },
 
@@ -261,82 +322,71 @@ const PortfolioRenderer = {
   },
 
   /**
-   * Contact details & methods
+   * Contact details & verified links
    */
   renderContact() {
-    const contactMethodsContainer = document.getElementById("contact-methods-container");
-    if (!contactMethodsContainer) return;
+    const contactLinksEl = document.getElementById("contact-direct-links");
+    if (!contactLinksEl) return;
 
-    const methods = [];
+    contactLinksEl.innerHTML = `
+      <a href="mailto:${this.data.personal.email}" class="contact-method-card" aria-label="Email Mahadeva Prasad S">
+        <div class="contact-method-icon">
+          ${ICONS.mail}
+        </div>
+        <div class="contact-method-text">
+          <span class="contact-method-label">Direct Email</span>
+          <span class="contact-method-value">${this.data.personal.email}</span>
+        </div>
+      </a>
 
-    // Verified LeetCode
-    methods.push(`
-      <div class="contact-item">
-        ${ICONS.leetcode}
-        <div>
-          <div style="font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono);">CODING PROFILE</div>
-          <a href="${this.data.problemSolving.leetcode.profileUrl}" target="_blank" rel="noopener noreferrer" style="color: var(--text-primary); font-weight: 500;">
-            leetcode.com/u/${this.data.problemSolving.leetcode.username}
-          </a>
+      <div class="contact-method-card">
+        <div class="contact-method-icon">
+          ${ICONS.mapPin}
+        </div>
+        <div class="contact-method-text">
+          <span class="contact-method-label">Location</span>
+          <span class="contact-method-value">${this.data.personal.location}</span>
         </div>
       </div>
-    `);
 
-    // Verified GitHub
-    if (this.data.social.github && this.data.social.github.trim() !== "") {
-      const githubUsername = this.data.social.github.replace(/\/$/, '').split('/').pop();
-      methods.push(`
-        <div class="contact-item">
+      <a href="${this.data.social.linkedin}" class="contact-method-card" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+        <div class="contact-method-icon" style="color: #60a5fa;">
+          ${ICONS.linkedin}
+        </div>
+        <div class="contact-method-text">
+          <span class="contact-method-label">LinkedIn</span>
+          <span class="contact-method-value">linkedin.com/in/mahadevaprasad-s</span>
+        </div>
+      </a>
+
+      <a href="${this.data.social.github}" class="contact-method-card" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+        <div class="contact-method-icon">
           ${ICONS.github}
-          <div>
-            <div style="font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono);">GITHUB PROFILE</div>
-            <a href="${this.data.social.github}" target="_blank" rel="noopener noreferrer" style="color: var(--text-primary); font-weight: 500;">
-              github.com/${githubUsername}
-            </a>
-          </div>
         </div>
-      `);
-    }
-
-    // Location
-    if (this.data.personal.location) {
-      methods.push(`
-        <div class="contact-item">
-          ${ICONS.info}
-          <div>
-            <div style="font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono);">LOCATION</div>
-            <span style="color: var(--text-primary); font-weight: 500;">${this.data.personal.location}</span>
-          </div>
+        <div class="contact-method-text">
+          <span class="contact-method-label">GitHub</span>
+          <span class="contact-method-value">github.com/mpeducation1527-arch</span>
         </div>
-      `);
-    }
+      </a>
 
-    // Optional email if configured
-    if (this.data.personal.email && this.data.personal.email.trim() !== "") {
-      methods.push(`
-        <div class="contact-item">
-          ${ICONS.mail}
-          <div>
-            <div style="font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono);">EMAIL</div>
-            <a href="mailto:${this.data.personal.email}" style="color: var(--accent-primary); font-weight: 500;">${this.data.personal.email}</a>
-          </div>
+      <a href="${this.data.social.leetcode}" class="contact-method-card" target="_blank" rel="noopener noreferrer" aria-label="LeetCode Profile">
+        <div class="contact-method-icon" style="color: #f59e0b;">
+          ${ICONS.leetcode}
         </div>
-      `);
-    }
-
-    if (contactMethodsContainer) {
-      contactMethodsContainer.innerHTML = methods.join("");
-    }
+        <div class="contact-method-text">
+          <span class="contact-method-label">LeetCode</span>
+          <span class="contact-method-value">leetcode.com/u/mprasad1527</span>
+        </div>
+      </a>
+    `;
   },
 
   /**
-   * Footer with dynamic year & verified details
+   * Footer
    */
   renderFooter() {
     const footerYearEl = document.getElementById("footer-year");
     const footerNameEl = document.getElementById("footer-name");
-    const footerLeetcodeLink = document.getElementById("footer-leetcode-link");
-    const footerGithubLink = document.getElementById("footer-github-link");
 
     if (footerYearEl) {
       footerYearEl.textContent = new Date().getFullYear();
@@ -344,15 +394,6 @@ const PortfolioRenderer = {
 
     if (footerNameEl) {
       footerNameEl.textContent = this.data.personal.name;
-    }
-
-    if (footerLeetcodeLink && this.data.problemSolving.leetcode.profileUrl) {
-      footerLeetcodeLink.href = this.data.problemSolving.leetcode.profileUrl;
-    }
-
-    if (footerGithubLink && this.data.social.github && this.data.social.github.trim() !== "") {
-      footerGithubLink.href = this.data.social.github;
-      footerGithubLink.style.display = "inline-block";
     }
   }
 };
